@@ -4,15 +4,19 @@ LFI Hunter
 
 ## Description
 
-A Local File Inclusion finder. Currently only working for UNIX based systems.
+A Local File Inclusion finder.
 
 ## Getting Started
 
 ### Executing program
 
-* With python3
+* With python3 for UNIX
 ```
-python3 lfi_hunter.py -t 'http://lfi.location/example.php?parameter=' -w unix.txt -o output.txt
+python3 lfi_hunter.py -t 'http://lfi.location/example.php?parameter=' -w unix.txt -os win -o output.txt
+```
+* With python3 for Windows
+```
+python3 lfi_hunter.py -t 'http://lfi.location/example.php?parameter=' -w win.txt -os win -o output.txt
 ```
 
 ## Help
