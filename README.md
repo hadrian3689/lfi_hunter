@@ -10,13 +10,9 @@ A Local File Inclusion finder.
 
 ### Executing program
 
-* With python3 for UNIX
+* With python3
 ```
-python3 lfi_hunter.py -u 'http://lfi.location/example.php?parameter=' -w unix.txt -os win -o output.txt
-```
-* With python3 for Windows
-```
-python3 lfi_hunter.py -u 'http://lfi.location/example.php?parameter=' -w win.txt -os win -o output.txt
+python3 lfi_hunter.py -u 'http://lfi.location/example.php?parameter=' -p '../../../../../' -w list.txt -o output.txt
 ```
 
 ## Help
