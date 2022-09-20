@@ -1,8 +1,4 @@
-# Project Title
-
-LFI Hunter
-
-## Description
+# LFI Hunter
 
 A Local File Inclusion finder.
 
