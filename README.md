@@ -8,7 +8,7 @@ A Local File Inclusion finder.
 
 * With python3
 ```
-python3 lfi_hunter.py -u 'http://lfi.location/example.php?parameter=' -p '../../../../../' -w list.txt -o output.txt
+python3 lfi_hunter.py -u 'http://lfi.location/example.php?parameter=' -l '../../../../../' -w list.txt -o output.txt
 ```
 
 ## Help
