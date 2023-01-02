@@ -196,7 +196,7 @@ class LFI_Hunter():
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='LFI Enumeration Tool')
-    parser.add_argument('-u', metavar='<url URL>', help='Example: -u http://lfi.location/?parameter=', required=True)
+    parser.add_argument('-u', metavar='<URL>', help='Example: -u http://lfi.location/?parameter=', required=True)
     parser.add_argument('-w', metavar='<Wordlist file>',help="Example: -w unix.txt", required=True)
     parser.add_argument('-l', metavar='<LFI Payload>',help="Example: -l ../../../../../", required=True)
     parser.add_argument('-pid', metavar='<Set max pid value>',default='1000',help="Default is 1000. Example: -pid 2000", required=False)
